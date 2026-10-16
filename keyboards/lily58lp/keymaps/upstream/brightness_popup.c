@@ -218,3 +218,52 @@ void base_layer_popup_render(bool dvorak, uint32_t elapsed, uint16_t duration) {
     int remaining = elapsed < duration ? (uint32_t)track * (duration - elapsed) / duration : 0;
     if (remaining) line((WIDTH - remaining) / 2, HEIGHT - 10, (WIDTH - remaining) / 2 + remaining - 1, HEIGHT - 10);
 }
+
+void boot_status_popup_render(bool awaiting_firmware) {
+    oled_clear();
+    text("BOOT", 12, 2);
+    line(WIDTH / 2 - 4, 27, WIDTH / 2 + 3, 27);
+
+    // Firmware chip icon.
+    line(8, 40, 23, 40);
+    line(8, 60, 23, 60);
+    line(8, 40, 8, 60);
+    line(23, 40, 23, 60);
+    line(12, 46, 19, 46);
+    line(12, 50, 19, 50);
+    line(12, 54, 19, 54);
+    for (int x = 11; x <= 20; x += 3) {
+        line(x, 37, x, 40);
+        line(x, 60, x, 63);
+    }
+
+    if (awaiting_firmware) {
+        text("WAITING", 78, 1);
+        text("FIRMWARE", 92, 1);
+    } else {
+        text("REBOOT", 78, 1);
+        text("SYSTEM", 92, 1);
+    }
+}
+
+void hid_waiting_popup_render(void) {
+    oled_clear();
+    text("HID", 12, 2);
+    line(WIDTH / 2 - 4, 27, WIDTH / 2 + 3, 27);
+
+    // USB plug with an open connection to show the missing host link.
+    line(12, 42, 19, 42);
+    line(12, 42, 12, 49);
+    line(19, 42, 19, 49);
+    line(12, 49, 15, 53);
+    line(19, 49, 16, 53);
+    line(15, 53, 15, 60);
+    line(16, 53, 16, 60);
+    line(11, 39, 11, 43);
+    line(20, 39, 20, 43);
+    line(8, 52, 10, 50);
+    line(21, 50, 23, 52);
+
+    text("WAITING", 78, 1);
+    text("FOR HOST", 92, 1);
+}

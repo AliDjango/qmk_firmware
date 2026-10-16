@@ -4,7 +4,7 @@ Status: software checks passed; hardware acceptance pending. Not flashed.
 
 Artifact: `/home/alish/qmk_firmware/lily58lp_upstream.uf2`
 
-SHA256: `8d3a29637d36f4d68e6951c7a7a9aee6df86d91d9fbacf43f9958868e35d873b`
+SHA256: `e09589a475626d2e04ace2e6a78e16ddb505e1bc51b118aa5ff7664fc040d8df`
 
 ## Verified
 
@@ -89,3 +89,11 @@ prefix and detects incomplete writes. Both sides need this update. Manager:
 and UF2 validation passed. Simultaneous operation on hardware remains pending.
 Legacy `0x85` clients and chunk transfers still produce responses and must not
 run alongside VIA. The manager was not restarted and no hardware was flashed.
+
+## OLED status-screen redesign
+
+Redrew the bootloader wait, reboot, and waiting-for-HID screens with the
+portrait pixel renderer, centered headings, and matching icons. The HID wait
+remains visible until the split status reports a connected host. Build passed;
+visual and split behavior need hardware confirmation. The UF2 checksum above
+identifies this build.

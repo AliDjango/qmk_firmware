@@ -592,10 +592,7 @@ bool oled_task_user(void) {
     } else {
         // Only show pages if HID driver is connected
         if (!slave_system_status.is_hid_driver_connected) {
-            oled_clear();
-            oled_write_ln("Waiting for HID...", false);
-            oled_write_P(slave_system_status.is_hid_driver_connected ? PSTR("Y") : PSTR("N"), false);
-            oled_write_P(PSTR("\n"), false);
+            hid_waiting_popup_render();
             return false;
         }
 
@@ -751,13 +748,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 void oled_render_boot(bool bootloader) {
-  oled_clear();
-      if (bootloader) {
-          oled_write_P(PSTR("Awaiting New Firmware "), false);
-      } else {
-          oled_write_P(PSTR("Rebooting "), false);
-      }
-
+  boot_status_popup_render(bootloader);
   oled_render_dirty(true);
 }
 
