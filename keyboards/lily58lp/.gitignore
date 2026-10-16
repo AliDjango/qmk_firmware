@@ -1,0 +1,2 @@
+# Ship the custom VIA definition despite QMK's repository-wide via*.json rule.
+!keymaps/upstream/via.json
