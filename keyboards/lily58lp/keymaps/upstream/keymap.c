@@ -426,7 +426,7 @@ const char *read_keylogs(void);
 // const char *read_timelog(void);
 
 bool oled_task_user(void) {
-    if (brightness_notice_kind != NOTICE_NONE && timer_elapsed32(brightness_notice_started) < BRIGHTNESS_NOTICE_MS) {
+    if (oled_enabled && brightness_notice_kind != NOTICE_NONE && timer_elapsed32(brightness_notice_started) < BRIGHTNESS_NOTICE_MS) {
         oled_set_brightness(oled_level);
         oled_on();
         if (brightness_notice_kind == NOTICE_BASE_LAYER) {

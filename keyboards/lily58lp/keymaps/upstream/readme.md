@@ -83,8 +83,9 @@ OLED brightness keys and RGB Matrix brightness keys show a two-second notice
 on both displays: OLED or RGB and a percentage. Repeated presses restart the
 notice. RGB percentage is relative to the configured brightness cap (80), so
 100% respects the existing LED limit. OLED percentage is relative to 255.
-The notice temporarily wakes disabled/sleeping displays; their normal state
-returns afterward. Both halves must run this version of the settings RPC.
+Notices are suppressed while OLED is disabled with the OLED toggle. An idle
+display may wake temporarily for a notice, then return to its normal state.
+Both halves must run this version of the settings RPC.
 
 RGB toggle/on/off keys also show RGB ON or RGB OFF on both OLEDs for two seconds.
 
